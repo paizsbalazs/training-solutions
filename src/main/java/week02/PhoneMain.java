@@ -12,6 +12,7 @@ public class PhoneMain {
 
         System.out.println("Mekorra a memoria?");
         int tarh = scanner.nextInt();
+        scanner.nextLine();
 
         Phone phone = new Phone(tip, tarh);
 
