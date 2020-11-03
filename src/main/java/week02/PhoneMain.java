@@ -6,8 +6,22 @@ public class PhoneMain {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        Phone phone = new Phone("Nokia 3310", 22);
-        Phone anotherphone = new Phone("Nokia 6510", 23);
+
+        System.out.println("Mi típus?");
+        String tip = scanner.nextLine();
+
+        System.out.println("Mekorra a memoria?");
+        int tarh = scanner.nextInt();
+
+        Phone phone = new Phone(tip, tarh);
+
+        System.out.println("Mi típus?");
+        String tip2 = scanner.nextLine();
+
+        System.out.println("Mekorra a memoria?");
+        int tarh2 = scanner.nextInt();
+
+        Phone anotherphone = new Phone(tip2, tarh2);
 
         System.out.println(phone.getType());
         System.out.println(anotherphone.getType());
