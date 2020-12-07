@@ -17,7 +17,7 @@ public class MathAlgorithms {
 
         for (int i = 2; i < x; i++) {
             if ( x % i == 0) {
-                c = false;
+                return c = false;
             } else {
                 c = true;
             }
