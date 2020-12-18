@@ -12,6 +12,7 @@ public class MathAlgorithmsTest {
 
         MathAlgorithms mathAlgorithms = new MathAlgorithms();
         assertTrue(mathAlgorithms.isPrime(13));
+        assertFalse(mathAlgorithms.isPrime(4));
 
     }
 
