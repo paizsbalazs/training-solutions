@@ -13,7 +13,7 @@ public class ArraySelector {
 
         }
 
-        if (sb.toString().length()>1) {
+        if (sb.toString().length()>1 && sb.toString().length()%2==0) {
            sb.delete(sb.toString().length()-2, 2);
         }
 
