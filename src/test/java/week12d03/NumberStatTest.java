@@ -11,7 +11,7 @@ class NumberStatTest {
     @Test
     public void TestNumberStatCreate() {
 
-        NumberStat numberStat = new NumberStat(List.of(1,1,5,3,4,5,6,5,6,4,1,6,5,4));
+        NumberStat numberStat = new NumberStat(List.of(3,1,1,5,4,5,6,5,6,4,1,6,5,4));
         System.out.println(numberStat.getOne());
 
     }
