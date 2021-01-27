@@ -9,7 +9,8 @@ class TeacherTest {
     @Test
     public void TestCreate() {
         Teacher teacher = new Teacher();
-        System.out.println(teacher.getTeacherClassNumber("Csincsilla Csilla"));
+        assertEquals(22, teacher.getTeacherClassNumber("Csincsilla Csilla"));
+
     }
 
 }
