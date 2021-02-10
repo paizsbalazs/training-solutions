@@ -28,5 +28,6 @@ class PostFinderTest {
 
         PostFinder pf = new PostFinder(posts);
         System.out.println(pf.findPostsFor("TULAJ1"));
+        assertEquals(2, pf.findPostsFor("TULAJ1").size());
     }
 }
