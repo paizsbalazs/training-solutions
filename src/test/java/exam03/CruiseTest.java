@@ -43,4 +43,13 @@ public class CruiseTest {
         price = cruise.getPriceForPassenger(new Passenger("John Doe", CruiseClass.SECOND));
         assertEquals(100_000, price, 0.5);
     }
+
+    @Test
+    void findPassengerByName() {
+        cruise.bookPassenger(new Passenger("John Doe", CruiseClass.LUXURY));
+        cruise.bookPassenger(new Passenger("Jack Doe", CruiseClass.FIRST));
+
+        Passenger passenger = cruise.findPassengerByName("Jack Doe");
+        assertEquals("Jack Doe", passenger.getName());
+    }
 }
