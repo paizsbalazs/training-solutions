@@ -37,7 +37,7 @@ public class Cruise {
         if (boat.getMaxPassengers()>this.passengers.size()+1) {
             passengers.add(passenger);
         } else {
-            //throw new IllegalArgumentException("");
+            throw new IllegalArgumentException();
         }
 
     }
