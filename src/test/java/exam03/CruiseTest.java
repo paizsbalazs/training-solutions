@@ -22,4 +22,25 @@ public class CruiseTest {
         assertEquals(LocalDate.of(2021, 1, 1), cruise.getSailing());
         assertEquals(100_000, cruise.getBasicPrice());
     }
+
+    @Test
+    void overBooking() {
+        for (int i = 0; i < 5; i++) {
+            cruise.bookPassenger(new Passenger("John Doe", CruiseClass.LUXURY));
+        }
+        assertThrows(IllegalArgumentException.class,
+                () -> cruise.bookPassenger(new Passenger("John Doe", CruiseClass.LUXURY)));
+    }
+
+    @Test
+    void getPriceForPassenger() {
+        double price = cruise.getPriceForPassenger(new Passenger("John Doe", CruiseClass.LUXURY));
+        assertEquals(300_000, price, 0.5);
+
+       // price = cruise.getPriceForPassenger(new Passenger("John Doe", CruiseClass.FIRST));
+       // assertEquals(180_000, price, 0.5);
+
+      //  price = cruise.getPriceForPassenger(new Passenger("John Doe", CruiseClass.SECOND));
+      //  assertEquals(100_000, price, 0.5);
+    }
 }
