@@ -35,10 +35,10 @@ public class Cruise {
 
     public void bookPassenger(Passenger passenger) {
 
-        if (boat.getMaxPassengers()<=this.passengers.size()+1) {
+        if (boat.getMaxPassengers()>this.passengers.size()+1) {
             passengers.add(passenger);
         } else {
-            throw new IllegalArgumentException("");
+            //throw new IllegalArgumentException("");
         }
 
     }
@@ -58,6 +58,25 @@ public class Cruise {
             price = this.basicPrice;
         }
         return price;
+    }
+
+    public Passenger findPassengerByName(String name) {
+
+        for (Passenger p: this.passengers) {
+            if (p.getName().equals(name)) {
+                return p;
+            }
+        }
+
+        return null;
+    }
+
+    public static void main(String[] args) {
+            Boat boat = new Boat("WetDreams", 5);
+            Cruise cruise = new Cruise(boat, LocalDate.of(2021, 1, 1), 100_000);
+            cruise.bookPassenger(new Passenger("John Doe", CruiseClass.LUXURY));
+            System.out.println(cruise.passengers.size());
+
     }
 
 }
