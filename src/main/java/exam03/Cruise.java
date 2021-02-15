@@ -45,12 +45,16 @@ public class Cruise {
 
     public double getPriceForPassenger(Passenger passenger) {
         double price = 0.0;
-        if (passenger.getCruiseClass().equals(CruiseClass.FIRST)) {
+
+        if (passenger.getCruiseClass() == CruiseClass.FIRST) {
             price = 1.8 * this.getBasicPrice();
-        } else {
-            if (passenger.getCruiseClass().equals(CruiseClass.LUXURY)) {
+        }
+
+        if (passenger.getCruiseClass() == CruiseClass.LUXURY) {
                 price = 3.0 * this.getBasicPrice();
-            }
+        }
+
+        if (passenger.getCruiseClass() == CruiseClass.SECOND) {
             price = this.basicPrice;
         }
         return price;
