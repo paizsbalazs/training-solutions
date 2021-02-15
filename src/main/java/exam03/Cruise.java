@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 public class Cruise {
 
@@ -91,6 +92,23 @@ public class Cruise {
         Collections.sort(names);
 
         return names;
+    }
+
+    public double sumAllBookingsCharged() {
+        double result = 0.0;
+
+        for (Passenger p: passengers) {
+            result = result + getPriceForPassenger(p);
+        }
+
+        return result;
+    }
+
+    public Map<CruiseClass, Integer> countPassengerByClass() {
+
+
+
+        return null;
     }
 
 }
