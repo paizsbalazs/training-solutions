@@ -2,6 +2,7 @@ package exam03;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Cruise {
@@ -77,6 +78,19 @@ public class Cruise {
             cruise.bookPassenger(new Passenger("John Doe", CruiseClass.LUXURY));
             System.out.println(cruise.passengers.size());
 
+    }
+
+    public List<String> getPassengerNamesOrdered() {
+
+        List<String> names = new ArrayList<>();
+
+        for (Passenger p: passengers) {
+            names.add(p.getName());
+        }
+
+        Collections.sort(names);
+
+        return names;
     }
 
 }
