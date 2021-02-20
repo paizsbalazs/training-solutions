@@ -1,4 +1,4 @@
-package arrayofarray;
+package arrayofarrays;
 
 public class ArrayOfArrayMain {
 
