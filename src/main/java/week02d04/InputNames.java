@@ -1,4 +1,4 @@
-package week02;
+package week02d04;
 
 import java.lang.reflect.Array;
 import java.util.Scanner;
