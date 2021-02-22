@@ -40,7 +40,7 @@ public class MailBox {
         } else {
 
             for (Mail m: mails ) {
-                if (fields[1].equals(m.getSubject())) {
+                if (fields[0].equals(m.getSubject())) {
                     result.add(m);
                 }
             }
