@@ -40,7 +40,15 @@ public class MailBox {
         } else {
 
             for (Mail m: mails ) {
+                System.out.println(m.getSubject());
                 if (m.getSubject().contains(fields[0])) {
+                    result.add(m);
+                }
+            }
+
+            for (Mail m: mails ) {
+                System.out.println(m.getSubject());
+                if (m.getMessage().contains(fields[0])) {
                     result.add(m);
                 }
             }
