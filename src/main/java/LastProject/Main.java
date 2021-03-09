@@ -41,9 +41,39 @@ public class Main {
                 }
                 System.out.println("Kérem adja meg az irányítószámot:");
                 String bnc = sc.nextLine();
-                if (!bnc.equals("")) {
+                if (!bnc.isEmpty()) {
                     System.out.println(dao.getCityByZip(bnc));
+                } else {
+                    throw new IllegalStateException("Üres az irányítószám");
                 }
+                System.out.println("Kérem adja meg az életkort:");
+                String bnage = sc.nextLine();
+                if ( ( Integer.parseInt(bnage) < 10 ) & ( Integer.parseInt(bnage) < 150  ) & (bnage.isEmpty()) ){
+                    throw new IllegalStateException("Hibás a kor");
+                }
+                System.out.println("Kérem adja meg az email címét:");
+                String bnmail = sc.nextLine();
+                if (!(bnmail.contains("@"))&&(bnmail.length()<3)) {
+                    throw new IllegalStateException("Hibás mail cím");
+                }
+                System.out.println("Kérem adja meg az email címét újra:");
+                String bnmail2 = sc.nextLine();
+                if (!bnmail.equals(bnmail2)) {
+                    throw new IllegalStateException("Hibás mail cím");
+                }
+                System.out.println("Kérem adja meg a TAJ számot");
+                String taj = sc.nextLine();
+                int result=0;
+                char[] tajt = taj.toCharArray();
+
+                for (int i = 0; i< tajt.length; i++) {
+                    if (i%2==0) {
+                        result = result + (tajt[i]*7);
+                    } else {
+                        result = result + (tajt[i]*3);
+                    }
+                }
+
                 break;
             case 2:
                 System.out.println("Tuesday");
