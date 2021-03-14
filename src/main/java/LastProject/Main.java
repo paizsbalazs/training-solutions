@@ -1,9 +1,14 @@
 package LastProject;
 
 import org.mariadb.jdbc.MariaDbDataSource;
-import org.mariadb.jdbc.MySQLDataSource;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -53,7 +58,7 @@ public class Main {
                 }
                 System.out.println("Kérem adja meg az email címét:");
                 String bnmail = sc.nextLine();
-                if (!(bnmail.contains("@"))&&(bnmail.length()<3)) {
+                if (!(bnmail.contains("@"))|(bnmail.length()<3)) {
                     throw new IllegalStateException("Hibás mail cím");
                 }
                 System.out.println("Kérem adja meg az email címét újra:");
@@ -68,18 +73,46 @@ public class Main {
 
                 for (int i = 0; i< tajt.length; i++) {
                     if (i%2==0) {
-                        result = result + (tajt[i]*7);
+                        result = result + ((Character.getNumericValue(tajt[i]))*7);
                     } else {
-                        result = result + (tajt[i]*3);
+                        result = result + ((Character.getNumericValue(tajt[i]))*3);
                     }
                 }
 
+                if (result%10==Character.getNumericValue(tajt[9])) {
+
+                } else {
+                    throw new IllegalStateException("Hibás adószám");
+                }
+                dao.addCitizens(new Citizens(bn, bnc, Integer.parseInt(bnage), bnmail, taj));
                 break;
             case 2:
-                System.out.println("Tuesday");
-                break;
+                try (BufferedReader reader = Files.newBufferedReader(Path.of("citizens.txt"))) {
+                    List<Citizens> citizens = new FileReader().readLines(reader);
+
+                    for (int i = 0; i<citizens.size(); i++) {
+                        dao.addCitizens(citizens.get(i));
+                    }
+
+                } catch (IOException ioe) {
+                    throw new IllegalStateException("Can not read file", ioe);
+                }
+
+            break;
             case 3:
-                System.out.println("Wednesday");
+
+                List<Citizens> citizens = dao.selectForVac();
+
+                try (BufferedWriter writer = Files.newBufferedWriter(Path.of("oltas.csv"))) {
+
+                    new FileReader().writeLines(citizens, writer);
+
+                } catch (IOException ioe) {
+                    throw new IllegalStateException("Can not read file", ioe);
+                }
+
+                System.out.println(dao.selectForVac().size());
+
                 break;
             case 4:
                 System.out.println("Thursday");
