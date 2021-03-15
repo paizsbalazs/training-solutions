@@ -7,9 +7,9 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
 
@@ -115,13 +115,58 @@ public class Main {
 
                 break;
             case 4:
-                System.out.println("Thursday");
+                System.out.println("Kérem adja meg a beteg Taj számát:");
+                String bntaj = sc.nextLine();
+
+                if (dao.getCitizenByTaj(bntaj)<1) {
+                    throw new IllegalStateException("NEm regisztált TAJ szám"); } else {
+                    System.out.println("Kérem adja meg a dátumot:");
+                    String bndat = sc.nextLine();
+                    System.out.println("Kérem adja meg az oltás típusát:");
+                    String bntypv = sc.nextLine();
+                    dao.addVaccination(bndat, bntypv, dao.getCitizenByTaj(bntaj));
+                }
                 break;
             case 5:
                 System.out.println("Friday");
                 break;
             case 6:
-                System.out.println("Saturday");
+                List<Citizens> citizens2 = dao.selectForVac();
+                Map<String, List<Citizens>> report = new HashMap<>();
+                List<Citizens> buffer = new ArrayList<>();
+
+                for (Citizens c:citizens2) {
+
+                    if (!report.containsKey(c.getZip())) {
+                        report.put(c.getZip(), buffer);
+                    }
+                    List<Citizens> c2 = new ArrayList<>(report.get(c.getZip()));
+                    c2.add(c);
+                    report.put(c.getZip(), c2);
+                }
+
+                System.out.println(report.toString());
+
+                for (String s: report.keySet()) {
+                    int nulla = 0;
+                    int egy = 0;
+                    int tobb = 0;
+
+                    for (int i = 0; i<report.get(s).size(); i++) {
+                        if (report.get(s).get(i).getNumber_of_vaccination()==0) {
+                            nulla = nulla + 1;
+                        } else {
+                            if (report.get(s).get(i).getNumber_of_vaccination()==1) {
+                                egy = egy + 1;
+                            } else {
+                                tobb = tobb + 1;
+                            }
+                        }
+                    }
+
+                    System.out.println("A " + s + " irányítószámon, oltatlan ember:" + nulla + " , egys oltással rendelkező ember:" + egy + " , és több oltással rendelkező ember:" + tobb + " van" + "\r\n");
+
+                }
                 break;
         }
 
